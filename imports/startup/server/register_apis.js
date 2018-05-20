@@ -1,7 +1,7 @@
-import { PlayersIndex } from '../../api/players/players_index.js';
+import { CompaniesIndex } from '../../api/companies/companies_index.js';
 
 Meteor.publish('test-search', function (searchTerm) {
-  const { userId } = this;
+  const { name } = this;
 
-  return PlayersIndex.search(searchTerm, { userId }).mongoCursor;
+  return CompaniesIndex.search(searchTerm, { name }).mongoCursor;
 });

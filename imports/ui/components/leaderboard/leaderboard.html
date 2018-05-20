@@ -11,13 +11,13 @@
     {{/if}}
   {{/EasySearch.IfInputEmpty}}
 
-  <select class="category-filter">
+  <!-- <select class="category-filter">
     <option value="">All</option>
     <option value="Hipster">Hipster</option>
     <option value="Genius">Genius</option>
     <option value="Idler">Idler</option>
     <option value="Geek">Geek</option>
-  </select>
+  </select> -->
 
   {{#EasySearch.IfSearching index=index }}
     <div>Searching</div>
@@ -25,7 +25,7 @@
 
   <ol class="leaderboard">
     {{#EasySearch.Each index=index }}
-      {{> player}}
+      {{> company}}
     {{/EasySearch.Each}}
   </ol>
 
@@ -34,8 +34,8 @@
   {{else}}
     {{#if selectedName}}
       <div class="details">
-        <div class="name">{{selectedName}}</div>
-        <button class="inc">Add 5 points</button>
+        <div class="name">{{selectedName.name}}</div>
+        <!-- <button class="inc">Add 5 points</button> -->
       </div>
     {{else}}
       <div class="message">Click a player to select</div>

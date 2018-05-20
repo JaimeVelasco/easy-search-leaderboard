@@ -1,5 +1,5 @@
 import './autorun.js';
 import '../../ui/components/leaderboard/leaderboard.js';
-import { Players } from '../../api/players/players';
+import { Companies } from '../../api/companies/companies';
 
-window.Players = Players;
+window.Companies = Companies;

@@ -1,28 +1,28 @@
 import './leaderboard.html';
-import '../players/player.js';
+import '../companies/company.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { EasySearch } from 'meteor/easy:search';
-import { Players } from '../../../api/players/players.js';
-import { PlayersIndex } from '../../../api/players/players_index.js';
+import { Companies } from '../../../api/companies/companies.js';
+import { CompaniesIndex } from '../../../api/companies/companies_index.js';
 import { $ } from 'meteor/jquery';
 
 Template.leaderboard.helpers({
 	inputAttributes: function () {
 		return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
 	},
-	players: function () {
-		return Players.find({}, { sort: { score: -1, name: 1 } });
+	companies: function () {
+		return Companies.find({}, { sort: { dateCreated: -1, name: 1 } });
 	},
 	selectedName: function () {
-		var player = PlayersIndex.config.mongoCollection.findOne({ __originalId: Session.get("selectedPlayer") });
-		return player && player.name;
+		var company = CompaniesIndex.config.mongoCollection.findOne({ _id: Session.get("selectedPlayer") });
+		return company;
 	},
 	index: function () {
-		return PlayersIndex;
+		return CompaniesIndex;
 	},
 	resultsCount: function () {
-		return PlayersIndex.getComponentDict().get('count');
+		return CompaniesIndex.getComponentDict().get('count');
 	},
 	showMore: function () {
 		return false;
@@ -32,10 +32,10 @@ Template.leaderboard.helpers({
 
 Template.leaderboard.events({
 	'click .inc': function () {
-		Meteor.call('updateScore', Session.get("selectedPlayer"));
+		// Meteor.call('updateScore', Session.get("selectedPlayer"));
 	},
 	'change .category-filter': function (e) {
-		PlayersIndex.getComponentMethods()
+		CompaniesIndex.getComponentMethods()
 			.addProps('categoryFilter', $(e.target).val())
 		;
 	}
